@@ -18,15 +18,21 @@ The Secure Shell protocol (SSH) is used to create secure connections between you
 
 ### Install OpenSSH on macOS
 A version of OpenSSH should be pre-installed on macOS. To check if OpenSSH is installed, open a terminal and run:
-`ssh -V`
+```
+ssh -V
+```
 
 The output should show the installed version of OpenSSH.
 
 To use Homebrew to install a newer version of OpenSSH, run:
-`brew install openssh`
+```
+brew install openssh
+```
 
 To check that OpenSSH was installed successfully, run:
-`ssh -V`
+```
+ssh -V
+```
 
 The output should show the installed version of OpenSSH.
 
@@ -35,22 +41,28 @@ To allow git to use your SSH key, an SSH agent needs to be running on your devic
 
 To check if it is already running, run the ps command. If the ssh-agent is already running, it should appear in the output, such as:
 
-```$ ps -ax | grep ssh-agent
-19998 ??         0:00.20 /usr/bin/ssh-agent -l```
+```
+$ ps -ax | grep ssh-agent
+19998 ??         0:00.20 /usr/bin/ssh-agent -l
+```
 
 To start the agent, run:
 `eval $(ssh-agent)`
 
 You may need to add this command to your ~/.bashrc, ~/.zshrc, ~/.profile, or equivalent shell configuration file. Adding this command to a shell configuration file will ensure the agent is running when you open a terminal. 
 
-Create an SSH key pair
+### Create an SSH key pair
 To create an SSH key pair:
 
 Open a terminal and navigate to your home or user directory using cd, for example:
-`cd ~`
+```
+cd ~
+```
 
 Generate a SSH key pair using ssh-keygen, such as:
-`ssh-keygen -t ed25519 -b 4096 -C "{username@emaildomain.com}" -f {ssh-key-name}`
+```
+ssh-keygen -t ed25519 -b 4096 -C "{username@emaildomain.com}" -f {ssh-key-name}
+```
 
 Where:
   * `{username@emaildomain.com}` is the email address associated with the Bitbucket Cloud account, such as your work email account.
@@ -69,9 +81,11 @@ To add the SSH key to your SSH agent (ssh-agent):
 
 2. To ensure the correct SSH key is used when connecting to Bitbucket, update or create your SSH configuration file `(~/.ssh/config)` with the following settings:
 
-```Host bitbucket.org
+```
+Host bitbucket.org
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/{ssh-key-name}```
+  IdentityFile ~/.ssh/{ssh-key-name}
+```
 
 Where `{ssh-key-name}` is the location of the private key file once it has been added to the ssh-agent.
 
